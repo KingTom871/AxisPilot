@@ -40,12 +40,12 @@ local SETTINGS = {
 -- [NOTICE] Interval must be >= 1, I recommend 1 :)
 local PROFILES = {
     ["standard"] = {
-        [4] = {0, 9, 1, "Standard 1", true},
-        [3] = {0, 4, 1, "Standard 2", true},
+        [4] = {1, 1, 1, "Standard 1", true},
+        [5] = {2, 2, 1, "Standard 2", false},
     },
     ["advanced"] = {
-        [4] = {0, 7, 1, "Advanced 1", true},
-        [3] = {0, 2, 1, "Advanced 2", true},
+        [4] = {3, 3, 1, "Advanced 1", true},
+        [5] = {4, 4, 1, "Advanced 2", false},
     }
 }
 ```
