@@ -13,10 +13,11 @@
 
 ## 🛠️ Quick Start
 
-1.  Open **Logitech G-HUB**.
-2.  Pick your game profile and click **Scripting**.
-3.  Paste the `AxisPilot.lua` code into the editor.
-4.  Hit **Save and Run**.
+1. Find `Code` Button on Github and Download ZIP.
+2. Open **Logitech G-HUB**.
+3. Pick your game profile and click **Scripting**.
+4. Paste the `AxisPilot.lua` code into the editor.
+5. Hit **Save and Run**.
 
 ---
 
