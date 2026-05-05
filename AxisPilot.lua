@@ -1,7 +1,6 @@
 --------------------------------------------------------------------------
--- [[ AxisPilot | Created by Ehsan Malik ]]
--- Licensed under the MIT License
--- For Study and Educational Purposes Only.
+-- [[ AxisPilot ]]
+-- Learn more in https://github.com/KingTom871/AxisPilot
 --------------------------------------------------------------------------
 
 -- Localize global APIs
@@ -40,7 +39,7 @@ local PROFILES = {
     }
 }
 
--- 3. Runtime Variables
+-- Runtime Variables(Leave these aloen)
 local cur_x, cur_y, cur_int = 0, 0, 1
 local cur_human = false
 local is_active = false
@@ -53,11 +52,8 @@ EnablePrimaryMouseButtonEvents(true)
 
 function OnEvent(event, arg)
     
-    -- A. Dynamic Profile Mapping
-    -- [MODIFIED] Now this section runs regardless of CapsLock state
     if event == "MOUSE_BUTTON_PRESSED" then
         
-        -- Safe Abort: Manually disable the system via customized buttons
         if arg == SETTINGS.OFF_BUTTON then
             is_active = false
             cur_x, cur_y = 0, 0
@@ -65,29 +61,23 @@ function OnEvent(event, arg)
             return
         end
 
-        -- Complexity Switch: Map input to profile via nested hash tables
         local mode = mod(SETTINGS.ADV_MOD) and "advanced" or "standard"
         local config = PROFILES[mode][arg]
 
         if config then
-            -- State update: cache values into runtime variables
             cur_x, cur_y, cur_int, cur_human = config[1], config[2], config[3], config[5]
             is_active = true
-            -- Even if CapsLock is OFF, you will see this confirmation
             log("\n[AxisPilot] Mode: " .. config[4] .. (cur_human and " (Humanized)" or "") .. " Loaded")
         end
     end
 
-    -- C. High-Polling Rate Handler
     if event == "MOUSE_BUTTON_PRESSED" and arg == 1 then
-        -- [MODIFIED] Added lockOn(SETTINGS.HOTKEY) check here to gate execution only
+
         if is_active and lockOn(SETTINGS.HOTKEY) and isPressed(SETTINGS.TRIGGER) then
             
-            -- Promote runtime variables to stack-relative locals 
             local x, y, interval = cur_x, cur_y, cur_int
             local h_factor = SETTINGS.HUMAN_FACTOR
 
-            -- Decision is made BEFORE entering the loop
             if cur_human then
                 -- Humanized Path
                 repeat
